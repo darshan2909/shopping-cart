@@ -1,0 +1,22 @@
+<div fxLayout="row" style="margin:2% 10% 0 10%">
+  <div fxFlex="100">
+    <div class="product-list">
+      <mat-card style="margin-top: 2px;" *ngFor="let product of products">
+        <mat-card-content>
+
+          <div fxLayout="row wrap" class="align-items-center">
+            <div fxFlex.gt-md="20" fxFlex.gt-lg="20" fxFlex="40">
+              <img width="100" height="100" src="assets/images/add-cart.png" alt="">
+            </div>
+            <div fxFlex.gt-md="80" fxFlex.gt-lg="80" fxFlex="60">
+              <h3>{{ product.title }}</h3>
+              <span>{{ product.description }}</span>
+              <p>Price: {{ product.price | currency }}</p>
+              <button mat-raised-button color="primary" (click)="addToCart(product)">Add to Cart</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

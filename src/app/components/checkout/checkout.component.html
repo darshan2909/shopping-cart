@@ -1,0 +1,47 @@
+<div fxLayout="row wrap" style="margin:2% 10% 0 10%">
+    <div fxFlex="100">
+        <mat-card *ngIf="cartItems.length !=0">
+            <mat-card-content>
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSource" class="table no-wrap">
+
+                        <ng-container matColumnDef="SrNo">
+                            <th mat-header-cell *matHeaderCellDef> Sr. No </th>
+                            <td mat-cell *matCellDef="let cartItems; let i = index"> {{i+1}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="productName">
+                            <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                            <td mat-cell *matCellDef="let cartItems"> {{cartItems.title}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="price">
+                            <th mat-header-cell *matHeaderCellDef> Price </th>
+                            <td mat-cell *matCellDef="let cartItems"> {{cartItems.price}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="quantity">
+                            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                            <td mat-cell *matCellDef="let cartItems"> {{cartItems.quantity}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="total">
+                            <th mat-header-cell *matHeaderCellDef> Total </th>
+                            <td mat-cell *matCellDef="let cartItems"> {{cartItems.total}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    </table>
+                    <div class="actions" style="text-align: right; margin-top: 20px;">
+                        <button mat-raised-button color="accent" (click)="confirmOrder()">Proceed to
+                            Checkout</button>
+                        <strong style="margin-left: 20px;">Grand Total: ${{grandTotal}}</strong>
+                    </div>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

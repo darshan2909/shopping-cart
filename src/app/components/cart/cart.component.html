@@ -1,0 +1,78 @@
+<div fxLayout="row wrap" style="margin:2% 10% 0 10%">
+  <div fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <div class="table-responsive" *ngIf="cartItems.length !=0">
+          <table mat-table [dataSource]="dataSource" class="table no-wrap">
+
+            <ng-container matColumnDef="SrNo">
+              <th mat-header-cell *matHeaderCellDef> Sr. No </th>
+              <td mat-cell *matCellDef="let cartItems; let i = index"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="productName">
+              <th mat-header-cell *matHeaderCellDef> Product Name </th>
+              <td mat-cell *matCellDef="let cartItems"> {{cartItems.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="image">
+              <th mat-header-cell *matHeaderCellDef> Product Image </th>
+              <td mat-cell *matCellDef="let cartItems">
+                <img height="50" width="50" src="assets/images/add-cart.png" alt="">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <td mat-cell *matCellDef="let cartItems"> {{cartItems.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> Price </th>
+              <td mat-cell *matCellDef="let cartItems"> {{cartItems.price}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef> Quantity </th>
+              <td mat-cell *matCellDef="let cartItems"> {{cartItems.quantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef> Total </th>
+              <td mat-cell *matCellDef="let cartItems"> {{cartItems.total}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+              <td mat-cell *matCellDef="let cartItems" class="action-link">
+                <a class="cursor-pointer" (click)="removeItem(cartItems)">
+                  <i class="fa fa-trash text-danger"></i>
+                </a>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+          <div class="actions" style="text-align: right; margin-top: 20px;">
+            <button mat-raised-button color="warn" class="m-r-5" (click)="emptycart()">Empty Cart</button>
+            <button mat-raised-button color="primary" class="m-r-5" routerLink="/products">Shop More</button>
+            <button mat-raised-button color="accent" class="m-r-5" [routerLink]="['/checkout']">Checkout</button>
+            <strong class="m-l-15 m-r-10">Grand Total: ${{grandTotal}}</strong>
+          </div>
+        </div>
+
+        <div *ngIf="cartItems.length ==0">
+          <mat-card-title>My Cart</mat-card-title>
+          <div class="text-center">
+            <img height="50" width="50" src="assets/images/empty-cart.png" alt="">
+            <h4>Your cart is empty!</h4>
+            <h6>Add item to it now</h6>
+            <button mat-raised-button routerLink="/products" color="primary">Shop Now</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

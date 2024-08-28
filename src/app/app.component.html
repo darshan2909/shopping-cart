@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="mat-elevation-z6" fxLayout="row" fxLayoutAlign="space-between center">
+    <h3 routerLink="">Shopping Cart</h3>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <mat-icon routerLink="cart">add_shopping_cart</mat-icon>
+        <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
+    </div>
+</mat-toolbar>
+
+<div class="page-wrapper">
+    <div class="page-content">
+        <router-outlet> </router-outlet>
+    </div>
+</div>
